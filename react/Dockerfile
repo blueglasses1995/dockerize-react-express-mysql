@@ -1,3 +1,7 @@
 FROM node:18.0.0-alpine3.14
-WORKDIR /app
 RUN apk update
+RUN apk add --no-cache bash curl git
+COPY package.json .
+RUN npm install
+COPY . .
+CMD ["npm", "run", "dev"]
